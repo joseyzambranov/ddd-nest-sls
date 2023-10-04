@@ -1,0 +1,35 @@
+service: snap-omni-project-service
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  settings:
+    dev:
+      region: us-east-2
+    prod:
+      region: us-east-1
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ${self:custom.settings.${self:custom.stage}.region}
+  iam:
+    role: arn:aws:iam::319643186591:role/omnichannel-lambda-access-desa-role
+  deploymentBucket:
+    name: omnichannel-dev-lambda
+    serverSideEncryption: AES256
+  apiGateway:
+    restApiId: qu2cqxv2kj
+    restApiRootResourceId: zeyuwoe3o3
+
+functions:
+  main:
+    handler: dist/serverless.handler
+    events:
+      - http:
+          method: ANY
+          path: '{proxy+}'
