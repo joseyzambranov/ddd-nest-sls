@@ -1,16 +1,22 @@
 import { Module } from '@nestjs/common';
+import { KnexModule } from 'nestjs-knex';
 import { ProjectsModule } from './projects/infrastructure/projects.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: '206.189.112.62',
-      port: 3306,
-      username: 'app_admin',
-      password: 'sinapsistb2$',
-      database: 'admin_snap_db'
+    KnexModule.forRootAsync({
+      useFactory: () => ({
+        config: {
+          client: 'mysql2',
+          connection: {
+            host: '127.0.0.1',
+            user: 'root',
+            port: '3306',
+            password: 'password',
+            database: 'database_name',
+          }
+        },
+      }),
     }),
     ProjectsModule],
   controllers: [],
