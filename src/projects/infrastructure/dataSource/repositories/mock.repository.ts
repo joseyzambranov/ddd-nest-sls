@@ -2,7 +2,7 @@ import { ProjectEntity } from "src/projects/domain/entities/project.entity";
 import { ProjectRepository } from "src/projects/domain/repositories/project.repository";
 import { ProjectValue } from "src/projects/domain/valueObjects/project.value";
 
-let PROJECT = [new ProjectValue('tarjeta habientes', 'problemas de pago')];
+let PROJECT = [new ProjectValue('tarjeta habientes test', 'problemas de pago')];
 
 export class MockRepository implements ProjectRepository {
 
