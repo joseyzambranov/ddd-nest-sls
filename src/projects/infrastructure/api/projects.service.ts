@@ -12,8 +12,9 @@ export class ProjectsService {
     this.projectUseCase = new ProjectUseCase(projectMysqlRepository);
   }
 
-  async getAll () {
-    return this.projectUseCase.listProjects();
+  async getAll (filters: any) {
+  
+    return this.projectUseCase.listProjects(filters);
   }
 
   async create (name: string, description: string) {
