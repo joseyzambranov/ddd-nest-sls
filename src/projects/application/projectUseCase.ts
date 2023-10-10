@@ -7,8 +7,8 @@ export class ProjectUseCase {
 
   }
 
-  public async listProjects () {
-    const projects = await this.projectRepository.listProject();
+  public async listProjects (filters: any) {
+    const projects = await this.projectRepository.listProject(filters);
     return projects;
   }
 
